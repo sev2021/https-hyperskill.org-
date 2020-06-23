@@ -12,11 +12,11 @@ make_usage = [[250, 0, 16, 1, 4], [350, 75, 20, 1, 7], [200, 100, 12, 1, 6]]
 
 def action_show(all_list):
     print("The coffee machine has:")
-    print(str(all_list[0]) + "of water")
-    print(str(all_list[1]) + "of milk")
-    print(str(all_list[2]) + "of coffee beans")
-    print(str(all_list[3]) + "of disposable cups")
-    print(str(all_list[4]) + "of money")
+    print(str(all_list[0]) + " of water")
+    print(str(all_list[1]) + " of milk")
+    print(str(all_list[2]) + " of coffee beans")
+    print(str(all_list[3]) + " of disposable cups")
+    print(str(all_list[4]) + " of money")
     
 def action_buy(make_list):
     print("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:")
@@ -52,16 +52,15 @@ def action_take(take_list):
     return take_list
 
 # Program starts here
-action = ""
+action_show(supplies_list)
 
-while action != "exit":
-    action_show(supplies_list)
-    print("Write action (buy, fill, take):")
-    action = input()
-    if input == "buy":
-        supplies_list = action_buy(supplies_list)
-    if input == "fill":
-        supplies_list = action_fill(supplies_list)
-    if input == "take":
-        supplies_list = action_take(supplies_list)
-    action_show(supplies_list)
+print("Write action (buy, fill, take):")
+action = input()
+if action == "buy":
+    supplies_list = action_buy(supplies_list)
+if action == "fill":
+    supplies_list = action_fill(supplies_list)
+if action == "take":
+    supplies_list = action_take(supplies_list)
+    
+action_show(supplies_list)
