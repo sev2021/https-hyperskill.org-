@@ -20,7 +20,7 @@ def action_show(all_list):
     
 def action_buy(make_list):
     print("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:")
-    make_select = int(input()-1)
+    make_select = int(input()) - 1
 
     if ((make_list[0] >= make_usage[make_select][0]) 
         and (make_list[1] >= make_usage[make_select][1])
@@ -53,9 +53,9 @@ def action_take(take_list):
 
 # Program starts here
 action = ""
-action_show(supplies_list)
 
 while action != "exit":
+    action_show(supplies_list)
     print("Write action (buy, fill, take):")
     action = input()
     if input == "buy":
@@ -64,3 +64,4 @@ while action != "exit":
         supplies_list = action_fill(supplies_list)
     if input == "take":
         supplies_list = action_take(supplies_list)
+    action_show(supplies_list)
