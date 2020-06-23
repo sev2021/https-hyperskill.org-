@@ -37,13 +37,13 @@ def action_buy(make_list):
 
 def action_fill(fill_list):
     print("Write how many ml of water do you want to add:")
-    fill_list[0] += input()
+    fill_list[0] += int(input())
     print("Write how many ml of milk do you want to add:")
-    fill_list[1] += input()    
+    fill_list[1] += int(input())
     print("Write how many grams of coffee beans do you want to add:")
-    fill_list[2] += input()
+    fill_list[2] += int(input())
     print("Write how many disposable cups of coffee do you want to add:")
-    fill_list[3] += input()
+    fill_list[3] += int(input())
     return fill_list
     
 def action_take(take_list):
