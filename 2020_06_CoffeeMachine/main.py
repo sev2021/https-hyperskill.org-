@@ -17,22 +17,25 @@ def action_show(all_list):
     print(str(all_list[2]) + " of coffee beans")
     print(str(all_list[3]) + " of disposable cups")
     print(str(all_list[4]) + " of money")
+    return all_list
     
 def action_buy(make_list):
-    print("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:")
-    make_select = int(input()) - 1
-
-    if ((make_list[0] >= make_usage[make_select][0]) 
-        and (make_list[1] >= make_usage[make_select][1])
-        and (make_list[2] >= make_usage[make_select][2])
-        and (make_list[3] >= make_usage[make_select][3])):
-            make_list[0] -= make_usage[make_select][0]
-            make_list[1] -= make_usage[make_select][1]
-            make_list[2] -= make_usage[make_select][2]
-            make_list[3] -= make_usage[make_select][3]
-            make_list[4] += make_usage[make_select][4]
-    else:
-        print("Can't make coffee. Need refill.")
+    print("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:")
+    make_usage = [[250, 0, 16, 1, 4], [350, 75, 20, 1, 7], [200, 100, 12, 1, 6]]
+    string = input()
+    if string in "123":
+        make_select = int(string) - 1
+        if (( make_list[0] >= make_usage[make_select][0]) 
+            and (make_list[1] >= make_usage[make_select][1])
+            and (make_list[2] >= make_usage[make_select][2])
+            and (make_list[3] >= make_usage[make_select][3])):
+                make_list[0] -= make_usage[make_select][0]
+                make_list[1] -= make_usage[make_select][1]
+                make_list[2] -= make_usage[make_select][2]
+                make_list[3] -= make_usage[make_select][3]
+                make_list[4] += make_usage[make_select][4]
+        else:
+            print("Can't make coffee. Need refill.")
     return make_list
 
 def action_fill(fill_list):
@@ -52,15 +55,18 @@ def action_take(take_list):
     return take_list
 
 # Program starts here
-action_show(supplies_list)
+supplies_list = [400, 540, 120, 9, 550]
 
-print("Write action (buy, fill, take):")
-action = input()
-if action == "buy":
-    supplies_list = action_buy(supplies_list)
-if action == "fill":
-    supplies_list = action_fill(supplies_list)
-if action == "take":
-    supplies_list = action_take(supplies_list)
-    
-action_show(supplies_list)
+while True:
+    print("Write action (buy, fill, take, remaining, exit):")
+    action = input()
+    if action == "buy":
+        supplies_list = action_buy(supplies_list)
+    if action == "fill":
+        supplies_list = action_fill(supplies_list)
+    if action == "take":
+        supplies_list = action_take(supplies_list)
+    if action == "remaining":
+        supplies_list = action_show(supplies_list)
+    if action == "exit":
+        break;
