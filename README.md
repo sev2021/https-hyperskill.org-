@@ -21,7 +21,7 @@
   We have now tuples and strings, now we want to iterete inside strings:<br />
   <b>for tuple in text + for string in tuple + for <i>letter</i> in string</b>  # this will return list of letters<br />
   <br />
-  Now as we iterated throu text, tuples, strings and letters we can mark we
-  <b><i>letter</i> for tuple in text + for string in tuple + for <i>letter</i> in string</b>
+  Now as we iterated throu text, tuples, strings and letters we can request at at the begining of phrase what do we want to read (letter)<br />
+  <b><i>letter</i> for tuple in text + for string in tuple + for <i>letter</i> in string</b><br />
   DONE!
 </p>
