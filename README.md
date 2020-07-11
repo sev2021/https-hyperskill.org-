@@ -1,7 +1,7 @@
 <h2>CRAZY PYTHON LOOPS</h2>
 <i>HTML works</i>
 <p>
-  How to hest for-in lopps? <br />
+  How to NEST for-in lopps? <br />
   It is not simle...
   Imagine you have sub-list like that:
   
