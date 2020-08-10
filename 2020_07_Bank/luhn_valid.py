@@ -10,13 +10,12 @@ def luhn_validation(nine_string):
     
     # plus initial 4 multiplied by 2
     nine_sum += 8
-    print(nine_sum)
     
     # 10th digit (checksum) calculated
     tenth_digit = 10 - nine_sum % 10
     
     #returning nine digit string plus checksum
-    return nine_string + str(tenth_digit)
+    return nine_string + str(tenth_digit)[-1]
 
 def add_client(all_clients = all_clients):
     
@@ -24,8 +23,8 @@ def add_client(all_clients = all_clients):
     
     while new_account in all_clients.keys():
         new_account = int(random.random() * 1000000000)
-        new_account = str(new_account).zfill(10)
-        new_account = luchn_validation(new_account)
+        new_account = str(new_account).zfill(9)
+        new_account = luhn_validation(new_account)
         
     new_pin = int(random.random() * 10000)
     all_clients[new_account] = str(new_pin).zfill(4)  
