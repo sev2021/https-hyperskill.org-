@@ -5,9 +5,6 @@ class coffee:
 	beans = 120
 	cups = 9
 	money = 550
-
-	def __init__(self):
-		self.user = ""
 		
 	def machine(self):
 		while True:
