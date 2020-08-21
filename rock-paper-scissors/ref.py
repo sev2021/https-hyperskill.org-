@@ -8,15 +8,13 @@ def g():
 	while True:
 		player = input()
 		
-		while player not in moves:
+		if player not in moves:
 			print("Invalid input")
-			player = input()
-		
+			continue
 		if player == "!exit":
 			break
 		if player == "!rating":
 			print(f"Your rating: {playerp}")
-			playerp += 50
 			continue
 		
 		computer = random.choice(moves[:3])
@@ -24,6 +22,7 @@ def g():
 		
 		if player == computer:
 			print(f"There is a draw ({computer})")
+			playerp += 50
 		elif (player + computer) in winner:
 			print(f"Well done. Computer chose {computer} and failed")	
 			playerp += 100
