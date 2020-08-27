@@ -1,4 +1,13 @@
 def g():
+	# Added access to results file "rating.txt"
+	#
+	# Form of the file:
+	#
+	# Tim 350
+	# Jane 200
+	# Alex 400
+	#
+	
 	import random
 
 	moves = ["rock", "paper", "scissors", "!exit", "!rating"]
