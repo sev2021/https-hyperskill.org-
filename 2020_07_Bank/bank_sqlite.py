@@ -1,10 +1,9 @@
-import sqlite3  # sqlite module added
+import sqlite3
 import random
 
-# sqlite service added
 conn = sqlite3.connect('card.s3db')
 cur = conn.cursor()
-cur.execute("DROP TABLE card")
+cur.execute("DROP TABLE IF EXISTS card")
 cur.execute("CREATE TABLE card (id INTEGER, number TEXT, pin TEXT, balance INTEGER DEFAULT 0)")
 conn.commit()
 
@@ -12,22 +11,19 @@ conn.commit()
 all_clients = {"0":"0000"}
 
 
-def luhn_validation(nine_string):
-    print(nine_string)
+def luhn_validation(numb_string):
+    print(numb_string)  # method changed, not 9 but all digits checked now
     # sum of even digits
-    nine_sum = sum(map(int, nine_string[1::2]))  
+    numb_sum = sum(map(int, numb_string[1::2]))  
     
     # ...plus sum of odd digits multiplied by 2 and reduced by 9 if bigger than 10
-    nine_sum += sum([(round(int(i) * 2 + int(i) / 8)) % 10 for i in nine_string[::2]])
+    numb_sum += sum([(round(int(i) * 2 + int(i) / 8)) % 10 for i in numb_string[::2]])
     
-    # plus initial 4 multiplied by 2
-    nine_sum += 8
-    
-    # 10th digit (checksum) calculated
-    tenth_digit = 10 - nine_sum % 10
+    # last digit (checksum) calculated
+    tenth_digit = 10 - numb_sum % 10
     
     # returning nine digit string plus checksum
-    return nine_string + str(tenth_digit)[-1]
+    return numb_string + str(tenth_digit)[-1]
 
 
 def add_client(all_clients = all_clients):
@@ -37,18 +33,18 @@ def add_client(all_clients = all_clients):
     while new_account in all_clients.keys():
         new_account = int(random.random() * 1000000000)
         new_account = str(new_account).zfill(9)
-        new_account = luhn_validation(new_account)
+        new_account = luhn_validation("400000" + new_account)
         
     new_pin = int(random.random() * 10000)
     all_clients[new_account] = str(new_pin).zfill(4)  
     print("Your card has been created")
     print("Your card number:")
-    print("400000" + new_account)
+    print(new_account)
     print("Your card PIN:")
     print(all_clients[new_account])
     # Saving new account to sqlite3 database card.s3db
     cur = conn.cursor()
-    cur.execute("INSERT INTO card (number, pin) VALUES (?, ?)", (int("400000" + new_account),all_clients[new_account]))
+    cur.execute("INSERT INTO card (number, pin) VALUES (?, ?)", (new_account, all_clients[new_account]))
     conn.commit()
     return all_clients
 
@@ -60,7 +56,7 @@ def log_client(all_clients = all_clients):
     print("Enter your PIN:")
     get_pin = input()
     
-    if all_clients.get(get_account[6:]) != get_pin:
+    if all_clients.get(get_account) != get_pin:
         print("Wrong card number or PIN!")
         return
         
