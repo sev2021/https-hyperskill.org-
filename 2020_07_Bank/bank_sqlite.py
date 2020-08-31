@@ -4,7 +4,7 @@ import random
 conn = sqlite3.connect('card.s3db')
 cur = conn.cursor()
 cur.execute("DROP TABLE IF EXISTS card")
-cur.execute("CREATE TABLE card (id INTEGER, number TEXT, pin TEXT, balance INTEGER DEFAULT 0)")
+cur.execute("CREATE TABLE card (id INTEGER PRIMARY KEY, number TEXT, pin TEXT, balance INTEGER DEFAULT 0)")
 conn.commit()
 
 
