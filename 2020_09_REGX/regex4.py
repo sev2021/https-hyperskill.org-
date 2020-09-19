@@ -25,7 +25,7 @@ def rt(reg,tex):
     reg = tex[0] + reg[1:]          #  if key was "." it will be letter now
     regl = len(reg[2:]) - len(reg[2:].strip(reg[0]))  #  count number of keys in reg
     texl = len(tex) - len(tex.lstrip(tex[0]))  #  count number of keys in tex
-    print(regl, " - ", texl)
+    print(regl, " - ", texl)    ######### DEBUG PRINT ###########
     if texl < regl + 1:    #  If there is less keys in txt than reg(+1 from condit)...
       return False         #  ...them it is impossible to replace it with regex
     return rt(reg[(2 + regl):], tex.lstrip(tex[0]))
