@@ -9,7 +9,7 @@ def rt(reg,tex):
     if len(reg) == 2:
       return True            #  Any option will match END-SUCCESS
     if reg[0] not in tex[0] + ".":   #  ?1  Dont use letter, it doesnt match
-      return rt(reg[2:], tex)
+      return rt(reg[2:], tex)    #### this may need refactoring, see "*"
 
     if reg[0] != reg[2]:           #  ?2 Is there one more same letter...
       return rt(reg[2:], tex[1:])   #  ...if not, use the lette
@@ -25,14 +25,23 @@ def rt(reg,tex):
     reg = tex[0] + reg[1:]          #  if key was "." it will be letter now
     regl = len(reg[2:]) - len(reg[2:].strip(reg[0]))  #  count number of keys in reg
     texl = len(tex) - len(tex.lstrip(tex[0]))  #  count number of keys in tex
-    print(regl, " - ", texl)    ######### DEBUG PRINT ###########
+    print(regl, " - ", texl)
     if texl < regl + 1:    #  If there is less keys in txt than reg(+1 from condit)...
       return False         #  ...them it is impossible to replace it with regex
     return rt(reg[(2 + regl):], tex.lstrip(tex[0]))
 
-  if reg[0] in tex[0] + ".":
+  if reg[1:].startswith("*"):
+    if len(reg) == 2:
+      return True            #  Any option will match END-SUCCESS    
+    if reg[0] != reg[2] and re[0] != ".":             #  *1 If key not replied after *...
+      return rt(reg[2:], tex.lstrip(reg[0]))   #  ...remove all keys (if any) from tex
+
+  #############  ??  ######################
+
+
+  if reg[0] in tex[0] + ".":       # main rt() function call for next loop
     return rt(reg[1:], tex[1:])
-  return False
+  return False                     # main rt() function END-FALSE
 
 
 rreg,ttex = input().split("|")
