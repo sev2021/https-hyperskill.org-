@@ -25,3 +25,15 @@
   <b><i>letter</i> for tuple in text + for string in tuple + for <i>letter</i> in string</b><br />
   DONE!
 </p>
+
+
+
+<p>
+# 2-D List of planets <br>
+planets = [['Mercury', 'Venus', 'Earth'], ['Mars', 'Jupiter', 'Saturn'], ['Uranus', 'Neptune', 'Pluto']] 
+</p>
+<p>
+# Nested List comprehension with an if condition <br> 
+flatten_planets = [planet for sublist in planets for planet in sublist if len(planet) < 6] 
+<br>          
+print(flatten_planets) </p>
