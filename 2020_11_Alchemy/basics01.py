@@ -21,11 +21,11 @@ Session = sessionmaker(bind = engine)  # see line 8 "Base"
 sess = Session()  # sess-object (class Base) START
 
 while True:        # loop to add more users (dont dupicate id's!)
-  user01 = py_User()  # user01-object (class py_User < Base)
-  user01.py_id = int(input())
-  user01.py_username = input()
-  sess.add(user01)
-  if user01.py_id > 100:
+  user = py_User()  # user-object (class py_User < Base)
+  user.py_id = int(input())
+  user.py_username = input()
+  sess.add(user)
+  if user.py_id > 100:
     break
 
 sess.commit() # one commit works for all sess.add's
