@@ -5,7 +5,7 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-Base = declarative_base()   # see line 19 "Session"
+Base = declarative_base()   # see line 16 "Session"
 
 class py_User(Base):  # inheritating from Base
   __tablename__ = "sql_tablename"
@@ -16,11 +16,10 @@ engine = create_engine("sqlite:///d.db", echo = True)
 Base.metadata.create_all(bind = engine)
 
 
-Session = sessionmaker(bind = engine)  # see line 8 "Base"
-
+Session = sessionmaker(bind = engine)  # see line 6 "Base"
 sess = Session()  # sess-object (class Base) START
 
-while True:        # loop to add more users (dont dupicate id's!)
+while True:
   user = py_User()  # user-object (class py_User < Base)
   user.py_id = int(input())
   user.py_username = input()
@@ -28,5 +27,9 @@ while True:        # loop to add more users (dont dupicate id's!)
   if user.py_id > 100:
     break
 
-sess.commit() # one commit works for all sess.add's
+sess.commit()  # END OF WRITING
+
+uu = sess.query(py_User).all()  # START OF READING
+for i in uu:print(i.py_username)
+
 sess.close() # sess-object (class Base) END
