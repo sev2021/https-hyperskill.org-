@@ -1,5 +1,12 @@
 # try to make it primitive way ;)
 
+def lucky_number():
+  print("Enter 6-digit number: ")
+  x = input()
+  print(f"First three digits = {x[:3]}")
+  print(f"Last three digits = {x[-3:]}")
+
+# WAS
 def lucky-number():
   print("Enter 6-digit number: ")
   x = input()
