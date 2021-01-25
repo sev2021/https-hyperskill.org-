@@ -32,8 +32,8 @@ def get_million(ip_address, port, key):
 
 if __name__ == '__main__':
 
-  if len(sys.argv) == 4:                  #  This was step 1 of 5 
+  if len(sys.argv) == 4:                  #  Call function from step 1 of 5 
     print(get_pass(sys.argv[1], sys.argv[2], sys.argv[3]))
 
-  if len(sys.argv) == 3:
+  if len(sys.argv) == 3:                  #  Call function from step 2 of 5 
     print(get_million(sys.argv[1], sys.argv[2], chars))
