@@ -1,4 +1,7 @@
 #  ################# FINAL ###################
+#  ## EDIT 2021 - Gosh this code sucks ;)  ###
+#  ## There is better way to solve it
+#  ## See new files in this folder
 
 def rt(reg,tex):
   print(reg," - ", tex)
