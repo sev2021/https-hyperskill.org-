@@ -1,28 +1,12 @@
-def check_regex(regex, text):
+def match_string(mregex, mtext, regex):      #  second functon gone 
     
-    if regex == "" or regex == text:                # baseZERO case True
+    if mregex == mtext:                     #  basic case check
         return True
     
-    if text == "":
-        return False
-                
-    for i in range(len(text) + 1):
-        if match_string(regex.strip("^$"), text[i:], regex):
-            if "^" in regex and i > 0:
-                return False
-            return True
-    return False
-        
-    
-def match_string(mregex, mtext, regex):
-    
-    if mregex == mtext:
-        return True
-    
-    if mtext == "":
+    if mtext == "":                     #  basic case check
         return False
 
-    if mregex == "":
+    if mregex == "":                     #  new check for the end of the text
         if "$" in regex and mtext != "":
             return False
         return True
@@ -51,4 +35,12 @@ def match_string(mregex, mtext, regex):
 
 
 regex, text = input().split("|")
-print(check_regex(regex, text))
+result = False
+
+for i in range(len(text) + 1):                              #  reduced function moved here
+    if match_string(regex.strip("^$"), text[i:], regex):
+        if "^" in regex and i > 0:                          #  check for begning of the text
+            break
+        result = True
+        break
+print(result)
