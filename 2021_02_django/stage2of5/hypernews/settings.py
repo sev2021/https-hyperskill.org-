@@ -14,9 +14,18 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+########################################################
+###  import os
+###
+###  os.path.abspath(__file__) #  this returns full path: /home/user/py/filename.py
+###
+###  os.path.dirname(os.path.abspath(__file__))  # this return only direcotory without filename
+###  > /home/user/py
+###
+###  __file__  # returns filename
+###
+#########################################################
 
-#NEWS_JSON_PATH = 'news.json'  # You can choose any path you want
-#NEWS_JSON_PATH = os.path.join(os.path.dirname(BASE_DIR), 'news.json')
 NEWS_JSON_PATH = os.path.join(BASE_DIR, 'news.json')  # ONLY-ONE-GOOD
 NEWS_JSON_PATH = os.environ.get('NEWS_JSON_PATH') or NEWS_JSON_PATH  # DO NOT MODIFY THIS LINE
 
