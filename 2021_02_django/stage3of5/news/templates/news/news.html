@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>django step3 of 5</title>
+</head>
+<body>
+    <h2>Hyper news</h2>
+    {% for date,date_details in jtemplate.items %}   <!-- "jtemplate" was dictionaly passed inside "context" dictionary -->
+        <h4>{{ date }}</h4>
+
+        <ul>{% for details in date_details %}     <!-- "date_details" is enumerated ITEM from jtemplate dictionary -->
+          <li><a href="/news/{{ details.link }}/">{{ details.title }}</a></li>{% endfor %}
+        </ul>                                     <!-- Weird formating to keep with Jetbrains template -->
+    {% endfor %}
+
+    <a href="/news/create/">LINK</a>
+</body>
+</html>
