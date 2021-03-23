@@ -39,13 +39,12 @@ class CreateNews(View):
   def get(self, request):
     return render(request, 'news/create.html')
   def post(self, request):
-    print(request.POST.get('title'))
     with open(settings.NEWS_JSON_PATH) as jf:
       jstring = json.load(jf)
     print(jstring)
     new_news = {}
     new_news['created'] = str(datetime.datetime.now())[:19]
-    new_news['text'] = request.POST.get('text')
+    new_news['text'] = request.POST.get('text')     # request.POST returns dict{} value, read it with "get" method!
     new_news['title'] = request.POST.get('title')
     new_news['link'] = 222
     jstring.append(new_news)
