@@ -1,3 +1,6 @@
+## last part of HyperNews django project
+##########################################
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.conf import settings
@@ -7,7 +10,7 @@ import json, datetime
 
 
 # Create your views here.
-def news(request, news_id):
+def news(request, news_id):                       # this is from step 2
   with open(settings.NEWS_JSON_PATH) as jf:
     jstring = json.load(jf)
   for i in jstring:
@@ -19,13 +22,13 @@ def news(request, news_id):
 
 
 def news_index(request):
-  nsearch = request.GET.get('q')
+  nsearch = request.GET.get('q')                # step 5 - reading answer from search input added on news.html page
   with open(settings.NEWS_JSON_PATH) as jf:
     jstring = json.load(jf)
     jstring.sort(key=lambda i:i['created'], reverse=True)   # sorting for list of dict
     jcontext = {"jtemplate": {}}
     for i in jstring:
-      if nsearch == None or nsearch in i['text']:
+      if nsearch == None or nsearch in i['text']:   # step 5 - filtering news base on "nsearch" string
         created_index = i['created'][:10]       # cuts date only (first 10 characters)
 
         if not created_index in jcontext['jtemplate']:
