@@ -1,4 +1,4 @@
-<h2>CRAZY PYTHON LOOPS</h2>
+CRAZY PYTHON LOOPS
 Sample 2021
 ```
 # original list
@@ -16,7 +16,7 @@ for class_group in school:
 Crazy Python list comprehention:
 ```
 student_list = [student   for class_group in school   for student in class_group]
-                             \___ FIRST ITTERATION ___/  \__ SECOND ITTERATION ____/
+                          \___ FIRST ITTERATION ___/  \__ SECOND ITTERATION ____/
 ```
 
 
