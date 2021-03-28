@@ -1,18 +1,21 @@
 <h2>CRAZY PYTHON LOOPS</h2>
 Sample 2021
-```# original list
+```
+# original list
 school = [["Mary", "Jack", "Tiffany"], 
           ["Brad", "Claire"],
           ["Molly", "Andy", "Carla"]]
 ```
 Standard itteration:
-```student_list = []
+```
+student_list = []
 for class_group in school:
     for student in class_group:
         print(student)
 ```
 Crazy Python list comprehention:
-```student_list = [student   for class_group in school   for student in class_group]
+```
+student_list = [student   for class_group in school   for student in class_group]
                              \___ FIRST ITTERATION ___/  \__ SECOND ITTERATION ____/
 ```
 
