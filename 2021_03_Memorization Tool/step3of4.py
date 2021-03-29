@@ -88,7 +88,7 @@ while True:
         break
     
     elif player_main == "2":
-        practice_card(test)
+        practice_card()
     
     elif player_main == "1":
         add_card()
