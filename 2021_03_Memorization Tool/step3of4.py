@@ -38,7 +38,7 @@ def add_card():
             print(f"{player_add} is not an option")
 
 
-def practice_card(test):
+def practice_card():
 
     result_list = session.query(MyClass).all()
 
