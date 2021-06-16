@@ -59,3 +59,11 @@ planets = [['Mercury', 'Venus', 'Earth'], ['Mars', 'Jupiter', 'Saturn'], ['Uranu
 flatten_planets = [planet for sublist in planets for planet in sublist if len(planet) < 6] 
 <br>          
 print(flatten_planets) </p>
+
+
+<p>
+# Simplest 2 list comprehension<br>
+a = [1,2,3]<br>
+b = [4,5,6]<br>
+[(i, j) for i in a for j in b]
+</p>
