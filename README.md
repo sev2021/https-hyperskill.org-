@@ -1,4 +1,10 @@
 CRAZY PYTHON LOOPS
+
+Zip python arrays:
+```
+>>> zip([1,2,3,4],[11,22,33,44])
+((1,11), (2,22), (3,33), (4,44))
+```
 Sample 2021
 ```
 # original list
